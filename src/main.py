@@ -1,11 +1,18 @@
 from textnode import TextNode
 from site_functions import copy_files,generate_page,clear_directory,generate_pages_recursive
+import sys
+import os 
 
 def main():
-    
-    clear_directory("public")
-    copy_files("static/","public/")
-    generate_pages_recursive("content/","template.html","public/")
+    if len(sys.argv)>1:
+        basepath = sys.argv[1]
+    else:
+        basepath = "/"
+
+    clear_directory("./docs")
+    copy_files("static/","./docs")
+    basepath = os.path.join("/",basepath)
+    generate_pages_recursive("./content/","./template.html","./docs",basepath)
 
     #generate_page("content/index.md","template.html","public/index.html")
     #generate_page("content/blog/glorfindel/index.md","template.html","public/blog/glorfindel/index.html")
