@@ -66,7 +66,7 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path,base
             if content.endswith(".md"):
                 target_path = os.path.splitext(target_path)[0] + ".html"
                 generate_page(content_path,template_path,target_path,basepath)
-        elif not os.path.isfile(content_path):
+        elif os.path.isdir(content_path):
             generate_pages_recursive(content_path,template_path,target_path,basepath)          
 
 
